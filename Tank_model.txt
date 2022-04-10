@@ -1,0 +1,423 @@
+//////////////////////////////////
+////////////////For Tank////////////////////////
+
+void tankrocket(){
+        glBegin(GL_POLYGON);
+
+        //glColor3ub(255, 255, 255);//body
+        //glColor3f(0.0f, 1.0f, 0.0f);//Green
+        //glColor4f(1.0f, 0.0f, 0.0f, 0.0f);//red
+        glColor3f(0.0f, 0.0f, 1.0f);//Blue
+        //glColor3f(0.5f, 1.0f, 1.0f);//cyan
+
+        glVertex2f(250, 200);
+        glVertex2f(300, 200);
+        glVertex2f(300, 220);
+        glVertex2f(250, 220);
+
+        glEnd();
+
+        glBegin(GL_POLYGON);
+       // glColor3ub(255, 0, 0);//head
+        glColor3f(0.0f, 1.0f, 0.0f);//Green
+        //glColor3f(0.0f, 0.0f, 1.0f);//Blue
+        glVertex2f(250, 200);
+        glVertex2f(250, 220);
+        glVertex2f(230, 210);
+
+        glEnd();
+
+        glBegin(GL_POLYGON);
+        //glColor3ub(255, 0, 0);//leg
+        //glColor4f(1.0f, 1.0f, 0.0f, 0.0f);//yellow
+        glColor3f(0.0f, 0.1f, 0.0f);//Forest Green
+
+        glVertex2f(300, 200);
+        glVertex2f(300, 220);
+        glVertex2f(305, 225);
+        glVertex2f(305, 195);
+
+        glEnd();
+
+
+        glPushMatrix();
+    if(fire)glTranslatef(bul,0,0);
+        glBegin(GL_POLYGON);
+        //glColor3ub(105,105,105);//bullet
+        glColor4f(1.0f, 0.0f, 0.0f, 0.0f);//red
+
+        glVertex2f(230, 208);
+        glVertex2f(230, 212);
+        glVertex2f(220, 212);
+        glVertex2f(220, 208);
+
+        glEnd();
+        glPopMatrix();
+
+
+
+
+
+}
+
+void TankTire(int xx, int yy, float r)//C029//H103
+{
+    glMatrixMode(GL_MODELVIEW);
+ glPushMatrix();
+glTranslatef(0.0f,0.0f,0.0f);
+glRotatef(TruckTireRotateAngle, 0.0f, 0.0f,1.0f);
+glTranslatef(-0.0f,-0.0f,0.0f);
+glBegin(GL_POLYGON); // Draw a Red 1x1 Square centered at origin
+    for (int i = 0; i < 200; i++)
+    {
+
+        float pi = 3.1416;
+        float A = (i * 2 * pi) / 200;
+
+        float x = r * cos(A);
+        float y = r * sin(A);
+        glVertex2f(x + xx, y + yy);
+    }
+    glEnd();
+    glBegin(GL_LINES);
+    glColor3ub(0,0,0);//black-rim
+    //glColor4f(1.0f, 0.5f, 0.0f, 0.0f);//orange/brown
+    glVertex2f(-0.075,0);
+    glVertex2f(0.075,0);
+
+    glVertex2f(-0.05,-0.075);
+    glVertex2f(0.05,0.075);
+
+    glVertex2f(0.05,-0.075);
+    glVertex2f(-0.05,0.075);
+
+    glVertex2f(0,-0.1);
+    glVertex2f(0,0.1);
+
+    glEnd();
+
+    glPopMatrix();
+
+}
+
+void TankScaledTire()
+{
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glTranslatef(140.1,95,0);
+    glScalef(90,90,0);
+    glColor3ub(0,0,0);//black-tire
+    //glColor3f(0.1f, 0.1f, 0.1f);//Dark grey
+    //glColor3f(2.0f, 0.5f, 1.0f);//Lilac
+
+    TankTire(0, 0, 0.2);
+    //glColor3ub(192,192,192);//silver-tire-rim
+    //glColor3f(0.1f, 0.0f, 0.0f);//Brown
+    glColor3f(2.0f, 0.5f, 1.0f);//Lilac
+
+    TankTire(0,0,0.13);
+    glColor3ub(211,211,255);//grey-tire-rim
+    TankTire(0,0,0.09);
+    glPopMatrix();
+}
+
+void TankBody()
+{
+
+    //glColor3ub(128,128,0); //blue-body
+
+   glColor3f(0.0f, 0.1f, 0.0f);//Forest Green
+    //glColor3f(0.0f, 0.0f, 1.0f);//Blue
+
+    glBegin(GL_POLYGON); //body
+    glVertex2f(150, 152);
+    glVertex2f(190, 152);
+    glVertex2f(215, 127);
+    glVertex2f(240, 127);
+    glVertex2f(240, 92);
+    glVertex2f(150,92);
+    glEnd();
+
+    glBegin(GL_POLYGON);//Back
+        glVertex2f(150, 152);
+        glVertex2f(81,152);
+        glVertex2f(60,90);
+        glVertex2f(150,91);
+    glEnd();
+
+     glBegin(GL_POLYGON);//BackUpper
+        glVertex2f(140, 195);
+        glVertex2f(95,195);
+        glVertex2f(81,152);
+        glVertex2f(190,152);
+    glEnd();
+
+
+
+
+
+
+
+
+    //box in back
+     glBegin(GL_POLYGON);//trolly-cargo
+     //glColor3ub(169, 120, 53);//brown
+     glColor3f(0.0f, 0.1f, 0.0f);//Forest Green
+    glVertex2f(50,140);
+    glVertex2f(120,152);
+    glVertex2f(120, 90);
+    glVertex2f(50,90);
+    glEnd();
+
+
+
+    glColor3ub(9, 12, 53);//black
+     //text(90.0,130.0,text3);
+    glBegin(GL_POLYGON); //back-light
+    //glColor3ub(255, 0, 0);
+    //glColor4f(1.0f, 1.0f, 0.0f, 0.0f);//yellow
+    glColor4f(1.0f, 0.0f, 0.0f, 0.0f);//red
+
+    glVertex2f(100-50, 105);
+    glVertex2f(105-50, 105);
+    glVertex2f(105-50, 125);
+    glVertex2f(100-50, 125);
+    glEnd();
+
+
+    glBegin(GL_POLYGON); //window
+    glColor3ub(0, 0, 0);//black-window-in-day
+    //glColor4f(1.0f, 0.0f, 0.0f, 0.0f);//red
+    //glColor3ub(128,128,0);
+
+    if(!day)
+    glColor3ub(163, 228, 215);//gray-window-in-night
+    glVertex2f(150, 152);
+    glVertex2f(190, 152);
+    glVertex2f(215, 127);
+    glVertex2f(210, 127);
+    glVertex2f(90, 127);
+    glVertex2f(80, 127);
+    glEnd();
+
+
+
+
+
+    glBegin(GL_POLYGON); //window-Divider
+    glColor3ub(192, 192, 192);
+    glVertex2f(170, 152);
+    glVertex2f(165, 152);
+    glVertex2f(165, 127);
+    glVertex2f(170, 127);
+    glEnd();
+
+
+    glBegin(GL_POLYGON); //roof-plate
+   // glColor3ub(168, 169, 173);
+    glColor3f(1.0f, 0.5f, 0.0f);//Orange
+
+    glVertex2f(86, 152);
+    glVertex2f(190, 152);
+    glVertex2f(185, 157);
+    glVertex2f(86, 157);
+    glEnd();
+
+
+    glBegin(GL_POLYGON); //window-holder-front
+    glColor3ub(168, 169, 173);
+    glVertex2f(190, 152);
+    glVertex2f(215, 127);
+    glVertex2f(210, 127);
+    glVertex2f(185, 152);
+    glEnd();
+
+//    glBegin(GL_POLYGON); //window-holder-back
+//    glColor3ub(168, 169, 173);
+//    glVertex2f(140+20-10, 157);
+//    glVertex2f(115+20, 127);
+//    glVertex2f(125+20, 127);
+//    glVertex2f(140+20-10, 152);
+//    glEnd();
+
+
+
+    glBegin(GL_POLYGON); //foot-holder
+    glColor3ub(168, 169, 173);
+    //glColor3f(0.0f, 0.5f, 1.0f);//baby Blue
+
+    glVertex2f(242, 92);
+    glVertex2f(52, 92);
+    glVertex2f(52, 97);
+    glVertex2f(242, 97);
+    glEnd();
+
+
+//    glBegin(GL_POLYGON);      //mirror
+//    glColor3f(0, 0, 0.1373);
+//    glVertex2f(211.5, 134.5);
+//    glVertex2f(204.5, 135.5);
+//    glVertex2f(203.5, 129);
+//    glVertex2f(210.5, 127);
+//    glEnd();
+
+    glBegin(GL_POLYGON);      //redYellow-headlight
+    //glColor3f(1.0, 1.0, 0.0); //body
+    glColor4f(1.0f, 0.0f, 0.0f, 0.0f);//red
+    glVertex2f(210.5+28, 134.5-10);
+    glVertex2f(203.5+28, 135.5-10);
+    glVertex2f(203.5+28, 129-10);
+    glVertex2f(210.5+28, 127-10);
+    glEnd();
+
+    if(!day)
+    {
+        glBegin(GL_POLYGON);      //red-headlight
+        //glColor3f(1.0, 1.0, 1.0); //body
+        glColor4f(1.0f, 0.0f, 0.0f, 0.0f);//red
+        glVertex2f(210.5+28+90, 134.5-10-0);
+        glVertex2f(205.5+28, 134.5-10);
+        glColor3f(0.8, 0.9, 0.0);
+        glVertex2f(205.5+28, 127-10);
+        glVertex2f(210.5+28+90, 127-10-30);
+        glEnd();
+
+    }
+
+    glBegin(GL_POLYGON); //window-opener-1
+    glColor3ub(192, 192, 192);
+    glVertex2f(150-15-5+20, 127-5-3);
+    glVertex2f(155-5-5+20, 127-5-3);
+    glVertex2f(155-5-5+20, 129-5);
+    glVertex2f(150-15-5+20, 129-5);
+    glEnd();
+    glBegin(GL_POLYGON); //window-opener-2
+    glColor3ub(192, 192, 192);
+    glVertex2f(150-15+40, 127-5-3);
+    glVertex2f(155-5+40, 127-5-3);
+    glVertex2f(155-5+40, 129-5);
+    glVertex2f(150-15+40, 129-5);
+    glEnd();
+
+    glBegin(GL_POLYGON); //window-opener-3
+    glColor3ub(192, 192, 192);
+    glVertex2f(150-15+60, 127-5-3);
+    glVertex2f(155-5+60, 127-5-3);
+    glVertex2f(155-5+60, 129-5);
+    glVertex2f(150-15+60, 129-5);
+    glEnd();
+
+    glBegin(GL_POLYGON); //window-opener-4
+    glColor3ub(192, 192, 192);
+    glVertex2f(150-15+80, 127-5-3);
+    glVertex2f(155-5+80, 127-5-3);
+    glVertex2f(155-5+80, 129-5);
+    glVertex2f(150-15+80, 129-5);
+    glEnd();
+
+     glBegin(GL_POLYGON); //window-opener-5
+    glColor3ub(192, 192, 192);
+    glVertex2f(150-15+0, 127-5-3);
+    glVertex2f(155-5+0, 127-5-3);
+    glVertex2f(155-5+0, 129-5);
+    glVertex2f(150-15+0, 129-5);
+    glEnd();
+
+     glBegin(GL_POLYGON); //window-opener-5
+    glColor3ub(192, 192, 192);
+    glVertex2f(150-5, 127-5-3);
+    glVertex2f(70, 127-5-3);
+    glVertex2f(70, 129-5);
+    glVertex2f(150-5, 129-5);
+    glEnd();
+
+
+}
+
+void TankThrust()
+{
+    if(day)
+    {
+        glBegin(GL_POLYGON);
+        glColor3ub(168, 169, 173);
+        glVertex2f(110-50, 92);
+        glColor3ub(255, 255, 255);
+        glVertex2f(00-50, 80);
+        glVertex2f(00-50, 110);
+        glColor3ub(0, 0, 0);
+        glVertex2f(110-50, 97);
+        glEnd();
+    }
+
+
+}
+
+void fullTank()
+{
+
+    TankBody();
+    glPushMatrix();
+    glTranslatef(79,0,0);
+    TankScaledTire();
+
+    glTranslatef(-44,0,0);
+    TankScaledTire();
+
+    glTranslatef(-47,0,0);
+    TankScaledTire();
+
+     glTranslatef(-45,0,0);
+    TankScaledTire();
+
+    glPopMatrix();
+
+}
+
+void TankReverse()
+{
+    glLineWidth(1);
+
+    glTranslatef(-100.5, 0, 0);
+
+    fullTank();
+
+
+}
+
+void ScaledTankReverse()
+{
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glTranslatef(800,80,0);
+    glScalef(-0.7,0.7,0);
+    TankReverse();
+    glPopMatrix();
+
+    glPushMatrix();
+    //glColor4f(1.0f, 0.0f, 0.0f, 0.0f);//red
+    glTranslatef(527,127,0);
+    glScalef(0.8,0.4,0);
+    tankrocket();
+    glPopMatrix();
+
+     glPushMatrix();
+    //glColor4f(1.0f, 0.0f, 0.0f, 0.0f);//red
+    glTranslatef(527,115,0);
+    glScalef(0.8,0.4,0);
+    tankrocket();
+    glPopMatrix();
+
+    glPushMatrix();
+    //glColor4f(1.0f, 0.0f, 0.0f, 0.0f);//red
+    glTranslatef(620,77,0);
+    glScalef(0.6,0.7,0);
+    tankrocket();
+    glPopMatrix();
+
+
+
+}
+
+
+/////////////////////////////////////////////////
+////////////////-----------////////////
