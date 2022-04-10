@@ -1,0 +1,222 @@
+#include<bits/stdc++.h>
+#include<windows.h>
+#include <GL/gl.h>
+#include <GL/glut.h>
+///For music
+#include <Mmsystem.h>
+#include<windows.h>
+#include<fstream>
+
+using namespace std;
+#pragma comment(lib, "Winmm.lib")
+#define int GLint
+#define PI 3.1416
+
+
+float cpos1=200,cpos2=400,cpos3=-250,cpos4=50,cpos5=490,sp1=2.0f,bul=0;
+
+
+
+///Circle
+void circle(GLfloat x, GLfloat y, GLfloat rad){
+    GLint triangle_amt=60,i;
+    GLfloat t_pi=2*PI;
+    glBegin(GL_TRIANGLE_FAN);
+    //glColor3ub(43,78,88);
+    glVertex2f(x,y);
+    for(i=0;i<=triangle_amt;i++){
+        GLfloat dx=rad*cos(i*t_pi/triangle_amt), dy=rad*sin(i*t_pi/triangle_amt);
+        glVertex2f(x+dx,y+dy);
+    }
+    glEnd();
+}
+///Cloud Model-1 Structure
+void cloudModel1(){
+    if(day)glColor3f(1.25,0.924,0.930);
+    else glColor3ub(54,74,156);
+
+    glPushMatrix();
+
+   glPushMatrix();
+    circle(305,205,10);///Left
+    circle(320,210,15);///Top
+    circle(334,207,10);///Right
+    circle(320, 207, 10);///Bottom
+    glPopMatrix();
+
+    glPopMatrix();
+
+}
+///Cloud Model-2 Structure
+void cloudModel2(){
+    if(day)glColor3f(1.25,0.924,0.930);
+    else glColor3ub(54,74,156);
+
+    glPushMatrix();
+    circle(305,205,10);///Left
+    circle(320,210,15);///Top
+    circle(334,207,10);///Right
+    circle(320, 207, 10);///Bottom
+    glPopMatrix();
+}
+///Cloud Model-3 Structure
+void cloudModel3(){
+
+    if(day)glColor3f(1.25,0.924,0.930);
+    else glColor3ub(54,74,156);
+
+    glPushMatrix();
+    glPushMatrix();
+    circle(305,205,10);///Left
+    circle(320,210,15);///Top
+    circle(334,207,10);///Right
+    circle(320, 207, 10);///Bottom
+    glPopMatrix();
+    glPopMatrix();
+}
+
+///Sky
+void sky(){
+    glPushMatrix();
+    if(day)glColor3ub(157, 216, 250);
+    else glColor3ub(4, 11, 51);
+
+    glBegin(GL_POLYGON);
+    glVertex2i(0,300);
+    glVertex2i(1000,300);
+    glVertex2i(1000,500);
+    glVertex2i(0,500);
+    glEnd();
+    glPopMatrix();
+}
+
+
+
+
+///cloud1
+void cloud1(){
+
+        glPushMatrix();
+        glTranslatef(cpos1,170,0);
+         glTranslatef(50,50,0);
+        cloudModel1();
+        glPopMatrix();
+
+}
+///cloud2
+void cloud2(){
+    if(day){
+        glPushMatrix();
+        glTranslatef(cpos2,270,0);
+         glTranslatef(25,0,0);
+        cloudModel2();
+        glPopMatrix();
+    }
+}
+///cloud3
+void cloud3(){
+
+        glPushMatrix();
+        glTranslatef(cpos3,200,0);
+         glTranslatef(-50,50,0);
+        cloudModel3();
+        glPopMatrix();
+
+}
+///cloud4
+void cloud4(){
+    glPushMatrix();
+    glTranslatef(cpos4,250,0);
+     glTranslatef(-50,20,0);
+    cloudModel2();
+    glPopMatrix();
+}
+
+///cloud5
+void cloud5(){
+    glPushMatrix();
+    glTranslatef(cpos5,220,0);
+     glTranslatef(-25,25,0);
+    cloudModel1();
+    glPopMatrix();
+}
+
+
+
+///Main
+void display(){
+	glClear(GL_COLOR_BUFFER_BIT);
+    glColor3f(255.0,0.0,1.0);
+
+	
+    cloud1();
+    cloud2();
+    cloud3();
+    cloud4();
+    cloud5();
+    
+
+
+
+	glFlush();
+}
+void init(void){
+	glClearColor(0.65, 1.0, 1.0, 0.0);
+	glMatrixMode(GL_PROJECTION);
+	gluOrtho2D(0.0, 1000.0, 0.0, 500.0);
+}
+
+void update(int value){
+
+    ///Cloud Control
+    if(cpos1>750)cpos1=-320;
+    if(cpos2<-350)cpos2=650;
+    if(cpos3>750)cpos3=-320;
+    if(cpos4>750)cpos4=-320;
+    if(cpos5<-350)cpos5=650;
+    cpos1+=sp1;
+    cpos2-=sp1;
+    cpos3+=sp1;
+    cpos4+=sp1;
+    cpos5-=sp1;
+    
+
+}
+
+
+
+
+void handleKeypress(unsigned char key, int x, int y){
+	switch (key){
+        case 'd':
+            day=1;
+            break;
+        case 'n':
+            day=0;
+            break;
+            case 'r':
+       
+
+        glutPostRedisplay();
+	}
+}
+
+int main(int argc, char** argv){
+    credit();
+    ///Music Background
+    //PlaySound(TEXT("sound.wav"), NULL, SND_ASYNC);
+    ///system("pause");
+
+	glutInit(&argc, argv);
+	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+	glutInitWindowPosition(0, 0);
+	glutInitWindowSize(1900, 1900);
+	glutCreateWindow("CG Project- War Zone");
+	init();
+	glutDisplayFunc(display);
+    glutKeyboardFunc(handleKeypress);
+
+    glutTimerFunc(1000, update, 0);
+    glutMainLoop();
+}
+

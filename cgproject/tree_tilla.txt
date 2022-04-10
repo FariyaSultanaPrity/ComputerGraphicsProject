@@ -1,0 +1,335 @@
+#include<bits/stdc++.h>
+#include<windows.h>
+#include <GL/gl.h>
+#include <GL/glut.h>
+///For music
+#include <Mmsystem.h>
+#include<windows.h>
+#include<fstream>
+
+using namespace std;
+#pragma comment(lib, "Winmm.lib")
+#define int GLint
+#define PI 3.1416
+
+
+
+bool  day = true,fire=true;
+
+///Circle
+void circle(GLfloat x, GLfloat y, GLfloat rad){
+    GLint triangle_amt=60,i;
+    GLfloat t_pi=2*PI;
+    glBegin(GL_TRIANGLE_FAN);
+    //glColor3ub(43,78,88);
+    glVertex2f(x,y);
+    for(i=0;i<=triangle_amt;i++){
+        GLfloat dx=rad*cos(i*t_pi/triangle_amt), dy=rad*sin(i*t_pi/triangle_amt);
+        glVertex2f(x+dx,y+dy);
+    }
+    glEnd();
+}
+
+
+void tilla1(){
+
+	glBegin(GL_POLYGON);
+	glColor3ub(0,128,0);
+
+	glVertex2i(0, 300);
+	glVertex2i(300, 300);
+	glVertex2i(150, 370);
+glEnd();
+}
+
+void tilla2(){
+     glPushMatrix();
+	glBegin(GL_POLYGON);
+	glColor3ub(34,139,34);
+
+	glVertex2i(250, 300);
+	glVertex2i(550, 300);
+	glVertex2i(400, 380);
+
+
+	glEnd();
+	glPopMatrix();
+}
+
+void tilla3(){
+     glPushMatrix();
+	glBegin(GL_POLYGON);
+	glColor3ub(0,128,0);
+
+	glVertex2i(500, 300);
+	glVertex2i(750, 300);
+	glVertex2i(650, 370);
+
+
+	glEnd();
+	glPopMatrix();
+}
+void tilla4(){
+     glPushMatrix();
+	glBegin(GL_POLYGON);
+	glColor3ub(34,139,34);
+
+	glVertex2i(700, 300);
+	glVertex2i(1000, 300);
+	glVertex2i(900, 380);
+
+
+	glEnd();
+	glPopMatrix();
+}
+
+}
+void field(){
+glPushMatrix();
+    if(day)glColor3ub(96,185,34);
+    else glColor3ub(96,185,34);
+
+    glBegin(GL_POLYGON);
+    glVertex2i(0,0);
+    glVertex2i(1000,0);
+    glVertex2i(1000,300);
+    glVertex2i(0,300);
+    glEnd();
+    glPopMatrix();
+
+
+
+}
+void treemodel(){
+    if(day) glColor3ub(0, 173, 36);
+    else glColor3ub(17, 102, 30);
+    circle(130,130,7);
+    circle(125,126,7);
+    circle(135,126,7);
+    circle(130,125,7);
+
+    glColor3ub(2, 41, 10);
+    glBegin(GL_POLYGON);
+    glVertex2i(129,104);
+    glVertex2i(129,126);
+    glVertex2i(131,126);
+    glVertex2i(131,104);
+    glEnd();
+}
+void tree1(){
+    glPushMatrix();
+    glTranslatef(-100,195,0);
+    treemodel();
+    glPopMatrix();
+}
+ void tree2(){
+    glPushMatrix();
+    glTranslatef(100,195,0);
+    treemodel();
+    glPopMatrix();
+}
+ void tree3(){
+    glPushMatrix();
+    glTranslatef(120,195,0);
+    treemodel();
+    glPopMatrix();
+}
+
+void tree4(){
+    glPushMatrix();
+    glTranslatef(-80,195,0);
+    treemodel();
+    glPopMatrix();
+}
+void tree5(){
+    glPushMatrix();
+    glTranslatef(-60,195,0);
+    treemodel();
+    glPopMatrix();
+}
+void tree6(){
+    glPushMatrix();
+    glTranslatef(300,195,0);
+    treemodel();
+    glPopMatrix();
+}
+void tree7(){
+    glPushMatrix();
+    glTranslatef(320,195,0);
+    treemodel();
+    glPopMatrix();
+}
+void tree8(){
+    glPushMatrix();
+    glTranslatef(340,195,0);
+    treemodel();
+    glPopMatrix();
+}
+void tree9(){
+    glPushMatrix();
+    glTranslatef(360,195,0);
+    treemodel();
+    glPopMatrix();
+}
+void tree10(){
+    glPushMatrix();
+    glTranslatef(380,195,0);
+    treemodel();
+    glPopMatrix();
+}
+
+void tree11(){
+    glPushMatrix();
+    glTranslatef(540,195,0);
+    treemodel();
+    glPopMatrix();
+}
+ void tree12(){
+    glPushMatrix();
+    glTranslatef(560,195,0);
+    treemodel();
+    glPopMatrix();
+}
+ void tree13(){
+    glPushMatrix();
+    glTranslatef(580,195,0);
+    treemodel();
+    glPopMatrix();
+}
+
+void tree14(){
+    glPushMatrix();
+    glTranslatef(620,195,0);
+    treemodel();
+    glPopMatrix();
+}
+void tree15(){
+    glPushMatrix();
+    glTranslatef(640,195,0);
+    treemodel();
+    glPopMatrix();
+}
+void tree16(){
+    glPushMatrix();
+    glTranslatef(680,195,0);
+    treemodel();
+    glPopMatrix();
+}
+void tree17(){
+    glPushMatrix();
+    glTranslatef(700,195,0);
+    treemodel();
+    glPopMatrix();
+}
+void tree18(){
+    glPushMatrix();
+    glTranslatef(720,195,0);
+    treemodel();
+    glPopMatrix();
+}
+void tree19(){
+    glPushMatrix();
+    glTranslatef(800,195,0);
+    treemodel();
+    glPopMatrix();
+}
+void tree20(){
+    glPushMatrix();
+    glTranslatef(820,195,0);
+    treemodel();
+    glPopMatrix();
+}
+
+
+
+///Main
+void display(){
+	glClear(GL_COLOR_BUFFER_BIT);
+    glColor3f(255.0,0.0,1.0);
+
+    tilla1();
+    tilla2();
+    tilla3();
+    tilla4();
+    field();
+    tree1();
+    tree2();
+    tree3();
+    tree4();
+    tree5();
+    tree6();
+    tree7();
+    tree8();
+    tree9();
+    tree10();
+    tree11();
+    tree12();
+    tree13();
+    tree14();
+    tree15();
+    tree16();
+    tree17();
+    tree18();
+    tree19();
+    tree20();
+   
+
+
+	glFlush();
+}
+void init(void){
+	glClearColor(0.65, 1.0, 1.0, 0.0);
+	glMatrixMode(GL_PROJECTION);
+	gluOrtho2D(0.0, 1000.0, 0.0, 500.0);
+}
+
+void update(int value){
+
+   
+
+}
+
+
+
+
+
+void handleKeypress(unsigned char key, int x, int y){
+	switch (key){
+        case 'd':
+            day=1;
+            break;
+        case 'n':
+            day=0;
+            break;
+           
+        glutPostRedisplay();
+	}
+}
+void credit(){
+
+    cout<<"------------------------------------------------------"<<endl;
+    cout<<"Press d for Day "<<endl;
+    cout<<"Press n for Night "<<endl;
+    
+    cout<<"------------------------------------------------------"<<endl;
+
+}
+int main(int argc, char** argv){
+    credit();
+    ///Music Background
+    //PlaySound(TEXT("sound.wav"), NULL, SND_ASYNC);
+    ///system("pause");
+
+	glutInit(&argc, argv);
+	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+	glutInitWindowPosition(0, 0);
+	glutInitWindowSize(1900, 1900);
+	glutCreateWindow("CG Project- War Zone");
+	init();
+	glutDisplayFunc(display);
+    glutKeyboardFunc(handleKeypress);
+
+    glutTimerFunc(1000, update, 0);
+    glutMainLoop();
+}
+
