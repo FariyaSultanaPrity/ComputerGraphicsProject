@@ -14,7 +14,7 @@ using namespace std;
 
 
 float cpos1=200,cpos2=400,cpos3=-250,cpos4=50,cpos5=490,sp1=0.6f,bul=0, tpos = 500;
-float sun_x=450 ,sun_y=480,sp_x=0.5f,sp_y=0.7f,plane_x=0.0f, plane_speed=4.0f,_rain = 0.0, truckSpeed = 3.3f;
+float sun_x=450 ,sun_y=480,sp_x=0.5f,sp_y=0.7f,plane_x=0.0f, plane_speed=4.0f,_rain = 0.0, truckSpeed = 1.0f;
 
 bool rainday = false, day = true,fire=true, night = false;
 float TruckTireRotateAngle = 0.0f;
@@ -88,12 +88,14 @@ void cloudModel3(){
 ///Sky
 void sky(){
     glPushMatrix();
-    if(day)glColor3ub(157, 216, 250);
-    else glColor3ub(4, 11, 51);
+    if(day)glColor3ub(199,214,224);
+    else glColor3ub(24,50,100);
 
     glBegin(GL_POLYGON);
     glVertex2i(0,300);
     glVertex2i(1000,300);
+    if (day) glColor3ub(166,199,222);
+    else glColor3ub(0,3,7);
     glVertex2i(1000,500);
     glVertex2i(0,500);
     glEnd();
@@ -105,7 +107,7 @@ void sky(){
 void tilla1(){
 
 	glBegin(GL_POLYGON);
-	glColor3ub(0,51,0);
+	glColor3ub(20,35,27);
 
 	glVertex2i(0, 300);
 	glVertex2i(300, 300);
@@ -116,7 +118,7 @@ glEnd();
 void tilla2(){
      glPushMatrix();
 	glBegin(GL_POLYGON);
-	glColor3ub(34,51,34);
+	glColor3ub(20,35,27);
 
 	glVertex2i(250, 300);
 	glVertex2i(550, 300);
@@ -130,7 +132,7 @@ void tilla2(){
 void tilla3(){
      glPushMatrix();
 	glBegin(GL_POLYGON);
-	glColor3ub(0,128,0);
+	glColor3ub(20,40,20);
 
 	glVertex2i(500, 300);
 	glVertex2i(750, 300);
@@ -143,7 +145,7 @@ void tilla3(){
 void tilla4(){
      glPushMatrix();
 	glBegin(GL_POLYGON);
-	glColor3ub(34,139,34);
+	glColor3ub(34,55,20);
 
 	glVertex2i(700, 300);
 	glVertex2i(1000, 300);
@@ -343,12 +345,15 @@ glPopMatrix();
 }
 void field(){
 glPushMatrix();
-    if(day)glColor3ub(24, 111, 17);
-    else glColor3ub(96,185,34);
+
+    if(day) glColor3ub(120, 130, 59);
+    else glColor3ub(28,52,45);
 
     glBegin(GL_POLYGON);
     glVertex2i(0,0);
     glVertex2i(1000,0);
+    if(day) glColor3ub(170,170,120);
+    else glColor3ub(40,70,50);
     glVertex2i(1000,300);
     glVertex2i(0,300);
     glEnd();
@@ -737,6 +742,7 @@ void TruckReverse()
 
 }
 void rocket(){
+
         glBegin(GL_POLYGON);
 
         glColor3ub(255, 255, 255);//body
@@ -787,6 +793,42 @@ void rocket(){
 
 }
 
+void frontWindow()
+{
+    glPushMatrix();
+     glScalef(0.3,0.3,0);
+     glTranslatef(0,0,0);
+  // glScalef(0.3,0.3,0);
+        glColor3ub(0,0,0);
+        glBegin(GL_QUADS),
+        glVertex2f(0, 60);
+        glVertex2f(200,  56);
+        glVertex2f(200, 216);
+        glVertex2f(0, 220);
+        glEnd();
+    glPopMatrix();
+
+
+}
+
+void sideWindow()
+{
+    glPushMatrix();
+     glScalef(0.3,0.3,0);
+     glTranslatef(0,0,0);
+  // glScalef(0.3,0.3,0);
+        glColor3ub(0,0,0);
+        glBegin(GL_QUADS),
+        glVertex2f(0, 60);
+        glVertex2f(130,  100);
+        glVertex2f(130, 260);
+        glVertex2f(0, 220);
+        glEnd();
+    glPopMatrix();
+
+
+}
+
 void defenseTower()
 {
     glPushMatrix();
@@ -796,7 +838,7 @@ void defenseTower()
         glBegin(GL_POLYGON);
 
         ///front side
-        glColor3ub(25, 78, 23);//front colour
+        glColor3ub(110,110,110);//front colour
 
         glVertex2f(0, 60);
         glVertex2f(300,  49);
@@ -807,7 +849,7 @@ void defenseTower()
         glBegin(GL_POLYGON);
 
         ///right side
-        glColor3ub(19, 70, 17);//right colour
+        glColor3ub(100,100,100);//right colour
 
         glVertex2f(300,  49);
         glVertex2f(400,  80);
@@ -818,7 +860,7 @@ void defenseTower()
         glBegin(GL_POLYGON);
 
         ///lower top side
-        glColor3ub(55, 118, 52);//top colour
+        glColor3ub(110,110,110);//top colour
 
         glVertex2f(0, 225);
         glVertex2f(300, 220);
@@ -829,7 +871,7 @@ void defenseTower()
 
         glBegin(GL_POLYGON);
         ///top railing rear side
-        glColor3ub(45, 84, 44);//rear color
+        glColor3ub(38,38,38);//rear color
         glVertex2f(393, 255);
         glVertex2f(393, 285);
         glVertex2f(0, 301);
@@ -838,7 +880,7 @@ void defenseTower()
 
         glPushMatrix();
         glLineWidth(2);
-        glColor3ub(72, 126, 70 );
+        glColor3ub(48,48,48);
         glBegin(GL_LINES);
         glVertex2f(393, 285);
         glVertex2f(0, 301);
@@ -856,7 +898,7 @@ void defenseTower()
         glBegin(GL_POLYGON);
 
         ///front side
-        glColor3ub(25, 78, 23);//front colour
+        glColor3ub(110,110,110);//front colour
 
         glVertex2f(0, 60);
         glVertex2f(300,  49);
@@ -867,7 +909,7 @@ void defenseTower()
         glBegin(GL_POLYGON);
 
         ///right side
-        glColor3ub(19, 70, 17);//right colour
+        glColor3ub(100,100,100);//right colour
 
         glVertex2f(300,  49);
         glVertex2f(400,  80);
@@ -877,8 +919,8 @@ void defenseTower()
 
         glBegin(GL_POLYGON);
 
-        ///lower top side
-        glColor3ub(55, 118, 52);//top colour
+        ///Upper top side
+        glColor3ub(128,128,128);//top colour
 
         glVertex2f(0, 225);
         glVertex2f(300, 220);
@@ -890,7 +932,7 @@ void defenseTower()
         glBegin(GL_POLYGON);
 
         ///top railing front side
-        glColor3ub(45, 84, 44);//front colour
+        glColor3ub(38,38,38);//front colour
         glVertex2f(0, 227);
         glVertex2f(300,  222);
         glVertex2f(300, 260);
@@ -898,9 +940,9 @@ void defenseTower()
         glEnd();
 
 
-        glBegin(GL_POLYGON);
         ///top railing right side
-        glColor3ub(38, 71, 37 );//front colour
+        glBegin(GL_POLYGON);
+        glColor3ub(35,35,35);//front colour
         glVertex2f(300,  222);
         glVertex2f(300, 260);
         glVertex2f(393, 285);
@@ -911,12 +953,12 @@ void defenseTower()
         glLineWidth(5);
         glBegin(GL_LINES);
 
-        glColor3ub(55, 118, 52);//front railing
+        glColor3ub(48,48,48);//front railing
         glVertex2f(300, 260);
         glVertex2f(0, 270);
 
         //glLineWidth(10);
-        glColor3ub(72, 126, 70 );//right railing
+        glColor3ub(48,48,48 );//right railing
         glVertex2f(300, 260);
         glVertex2f(393, 285);
 
@@ -935,6 +977,33 @@ void defenseTower()
 
         glPopMatrix();
 
+        //front left window
+        glPushMatrix();
+        glTranslatef(0,230,0);
+        frontWindow();
+        glPopMatrix();
+        //front middle window
+        glPushMatrix();
+        glTranslatef(80,228,0);
+        frontWindow();
+        glPopMatrix();
+        //front right window
+        glPushMatrix();
+        glTranslatef(160,226,0);
+        frontWindow();
+        glPopMatrix();
+
+        //right first window
+        glPushMatrix();
+        glTranslatef(240,226,0);
+        sideWindow();
+        glPopMatrix();
+        //right second window
+        glPushMatrix();
+        glTranslatef(290,241,0);
+        sideWindow();
+        glPopMatrix();
+
 
 
 }
@@ -948,13 +1017,14 @@ void ScaledTruckReverse()
     glPushMatrix();
     glTranslatef(tpos,0,0);
     glTranslatef(500,140,0);
-    glScalef(-0.7,0.7,0.0);
+    glScalef(-0.6,0.55,0.0);
     TruckReverse();
     glPopMatrix();
 
     glPushMatrix();
     glTranslatef(tpos,0,0);
-    glTranslatef(190,48,0);
+    glTranslatef(200,122,0);
+    glScalef(0.9,0.4,0);
     rocket();
     glPopMatrix();
 
