@@ -1,0 +1,28 @@
+//NewTree
+
+void NewTree()
+{
+glBegin(GL_QUADS);             //Tree 1 Part
+
+glColor3ub(0,67,0);
+
+glVertex2i(55,570);
+glVertex2i(40,545);
+glVertex2i(90,545);
+glVertex2i(75,570);
+
+glColor3ub(0,0,85);
+
+glVertex2i(45,545);
+glVertex2i(30,520);
+glVertex2i(100,520);
+glVertex2i(85,545);
+
+glColor3ub(0,56,0);
+
+glVertex2i(62,508);
+glVertex2i(68,508);
+glVertex2i(68,520);
+glVertex2i(62,520);
+glEnd();
+}

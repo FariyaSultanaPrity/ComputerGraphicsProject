@@ -1,0 +1,46 @@
+///New Cloud
+
+void NewCloud()
+{
+
+ glBegin(GL_POLYGON);        //Cloud 1
+    glColor3ub(232, 230, 225);
+
+  for(int i=0;i<=360;i++)
+    {
+        float angle= i*3.1416/180;
+
+    glVertex2f(500+cos(angle)*15,615+sin(angle)*10);
+    }
+
+    for(int i=0;i<=360;i++)
+    {
+        float angle= i*3.1416/180;
+         glVertex2f(510+cos(angle)*15,625+sin(angle)*10);
+    }
+
+    for(int i=0;i<=360;i++)
+    {
+        float angle= i*3.1416/180;
+         glVertex2f(520+cos(angle)*15,605+sin(angle)*10);
+    }
+
+     for(int i=0;i<=360;i++)
+    {
+        float angle= i*3.1416/180;
+         glVertex2f(532+cos(angle)*15,630+sin(angle)*10);
+    }
+
+
+     for(int i=0;i<=360;i++)
+    {
+        float angle= i*3.1416/180;
+         glVertex2f(545+cos(angle)*15,615+sin(angle)*10);
+    }
+
+    glEnd();
+
+    glPopMatrix();
+
+
+}
